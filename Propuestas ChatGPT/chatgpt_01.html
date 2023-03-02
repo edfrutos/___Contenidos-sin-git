@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EDF_ChatGPT_01 - Propiedades CSS</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Helvetica Neue", sans-serif;
+        background-color: #f9f9f9;
+      }
+
+      header {
+        background-color: #324a5e;
+        color: #fff;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .search-container {
+        display: flex;
+        align-items: center;
+        margin: 20px;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .search-input {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        font-size: 16px;
+        margin-right: 10px;
+      }
+
+      .search-button {
+        background-color: #324a5e;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .property-list {
+        list-style: none;
+        margin: 0;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .property-item {
+        margin: 10px 0;
+        padding: 20px;
+        background-color: #f1f1f1;
+        border-radius: 4px;
+        display: none;
+      }
+
+      .highlight {
+        background-color: #ffd700;
+        font-weight: bold;
+      }
+
+      .pagination {
+        display: flex;
+        justify-content: center;
+        margin: 20px;
+      }
+
+      .page-link {
+        background-color: #fff;
+        color: #324a5e;
+        border: 1px solid #324a5e;
+        padding: 5px 10px;
+        text-decoration: none;
+        margin: 5px;
+        cursor: pointer;
+      }
+
+      .page-link.active {
+        background-color: #324a5e;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>EDF - Propiedades CSS</h1>
+      <div class="search-container">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Buscar propiedades CSS..."
+        />
+        <button class="search-button">Buscar</button>
+      </div>
+    </header>
+    <div class="property-list">
+      <ul>
+        <li class="property-item searchable">
+          align-content: Establece la alineación vertical del contenido de un
+          contenedor flexible cuando hay espacio disponible en el eje
+          transversal.
+        </li>
+        <li class="property-item searchable">
+          align-items: Establece la alineación vertical de los elementos dentro
+          de un contenedor flexible.
+        </li>
+        <li class="property-item searchable">
+          align-self: Establece la alineación vertical de un elemento en
+          relación           con su contenedor flexible.
+        </li>
+        <li class="property-item searchable">
+          all: Establece todas las propiedades CSS a sus valores iniciales o
+          heredados.
+        </li>
+        <li class="property-item searchable">
+          animation: Es una propiedad abreviada que permite definir una animación
+          en CSS.
+        </li>
+        <li class="property-item searchable">
+          background: Establece el fondo de un elemento.
+        </li>
+        <li class="property-item searchable">
+          border: Establece el ancho, el estilo y el color del borde de un
+          elemento.
+        </li>
+        <li class="property-item searchable">
+          box-shadow: Establece una sombra alrededor de un elemento.
+        </li>
+        <li class="property-item searchable">
+          color: Establece el color del texto de un elemento.
+        </li>
+        <li class="property-item searchable">
+          display: Establece cómo se muestra un elemento en el documento.
+        </li>
+        <li class="property-item searchable">
+          font-family: Establece la familia de fuentes utilizada para el texto
+          de un elemento.
+        </li>
+        <li class="property-item searchable">
+          font-size: Establece el tamaño de letra utilizado para el texto de un
+          elemento.
+        </li>
+        <li class="property-item searchable">
+          font-style: Establece el estilo de la fuente utilizada para el texto
+          de un elemento.
+        </li>
+        <li class="property-item searchable">
+          font-weight: Establece el grosor de la fuente utilizada para el texto
+          de un elemento.
+        </li>
+        <li class="property-item searchable">
+          height: Establece la altura de un elemento.
+        </li>
+        <li class="property-item searchable">
+          margin: Establece el margen exterior de un elemento.
+        </li>
+        <li class="property-item searchable">
+          padding: Establece el relleno interior de un elemento.
+        </li>
+        <li class="property-item searchable">
+          text-align: Establece la alineación horizontal del texto de un
+          elemento.
+        </li>
+        <li class="property-item searchable">
+          width: Establece el ancho de un elemento.
+        </li>
+      </ul>
+      <div class="pagination">
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+      </div>
+    </div>
+    <script>
+      const searchInput = document.querySelector(".search-input");
+      const searchButton = document.querySelector(".search-button");
+      const properties = document.querySelectorAll(".property-item");
+
+      searchButton.addEventListener("click", () => {
+        const searchValue = searchInput.value.trim().toLowerCase();
+
+        properties.forEach((property) => {
+          const propertyText = property.textContent.trim().toLowerCase();
+          if (propertyText.includes(searchValue)) {
+            property.classList.add("searchable");
+            property.innerHTML = propertyText.replace(
+              new RegExp(searchValue, "gi"),
+              '<span class="highlight">$&</span>'
+            );
+          } else {
+            property.classList.remove("searchable");
+            property.innerHTML = propertyText;
+          }
+        });
+
+        const visibleProperties = document.querySelectorAll(".searchable");
+        const paginationLinks = document.querySelectorAll(".page-link");
+
+        if (visibleProperties.length === 0) {
+            paginationLinks.forEach((link) => {
+            link.style.display = "none";
+          });
+        } else {
+          const propertiesPerPage = 6;
+          const pageCount = Math.ceil(visibleProperties.length / propertiesPerPage);
+
+          paginationLinks.forEach((link, index) => {
+            if (index < pageCount) {
+              link.style.display = "inline-block";
+            } else {
+              link.style.display = "none";
+            }
+          });
+
+          let pageNumber = 1;
+
+          paginationLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              pageNumber = parseInt(link.textContent);
+
+              properties.forEach((property) => {
+                property.style.display = "none";
+              });
+
+              for (
+                let i = (pageNumber - 1) * propertiesPerPage;
+                i < pageNumber * propertiesPerPage && i < visibleProperties.length;
+                i++
+              ) {
+                visibleProperties[i].style.display = "block";
+              }
+
+              paginationLinks.forEach((link) => {
+                if (link.textContent === pageNumber.toString()) {
+                  link.classList.add("active");
+                } else {
+                  link.classList.remove("active");
+                }
+              });
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
+
